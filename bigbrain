@@ -1,3 +1,14 @@
+local mt = getrawmetatable(game)
+local old = mt.__namecall
+
+mt.__namecall = function(self, ...)
+    if (getnamecallmethod() == "kick" or "Kick") then
+        return self.Kick(self,...)
+    end
+    
+    return olf(self, ...)
+end
+
 old = hookmetamethod(game.Players.LocalPlayer, "__namecall", function(self,...)
     if (tostring(self) == "kick" or "Kick") then
         return self.Kick(self,...)
