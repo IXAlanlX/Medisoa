@@ -1,0 +1,16 @@
+old = hookmetamethod(game.Players.LocalPlayer, "__namecall", function(self,...)
+    if (tostring(self) == "kick" or "Kick") then
+        return self.Kick(self,...)
+    end
+    return old(self,...)
+end)
+
+hookfunction(hookmetamethod, function(v)
+    return game.Players.LocalPlayer:kick()
+end)
+
+hookfunction(hookfunction, function(v)
+    return game.Players.LocalPlayer:kick()
+end)
+
+game.Players.LocalPlayer:kick()
